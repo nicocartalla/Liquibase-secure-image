@@ -21,8 +21,8 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
-    - name: Build the OpenJDK 11 image
-      run: docker build . --file ./Dockerfile --tag nicocartalla/liquidbase-harden:v4.6.1
+    - name: Build the LiquiBase 11 image
+      run: DOCKER_BUILDKIT=1 docker build . --file ./Dockerfile --tag nicocartalla/liquidbase-harden:v4.6.1
       
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
@@ -39,5 +39,5 @@ jobs:
         sarif_file: 'trivy-results.sarif'  
     
 
-    - name: Docker Push OpenJDK 11
+    - name: Docker Push LiquiBase
       run: docker push nicocartalla/liquidbase-harden:v4.6.1
