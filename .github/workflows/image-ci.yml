@@ -27,7 +27,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'nicocartalla/liquidbase-harden:v4.6.1'
+        image-ref: 'nicocartalla/liquibase-harden:v4.6.1'
         format: 'template'
         template: '@/contrib/sarif.tpl'
         output: 'trivy-results.sarif'
