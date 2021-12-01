@@ -20,5 +20,3 @@ COPY --chmod=500 --chown=liquibase:liquibase liquibase /liquibase/
 RUN ln -s /liquibase/liquibase /usr/local/bin/liquibase
 
 USER liquibase
-
-ENTRYPOINT ["liquibase"]
