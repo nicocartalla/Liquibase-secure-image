@@ -16,6 +16,16 @@ ADD https://github.com/liquibase/liquibase/releases/download/v4.6.2/liquibase-4.
 RUN tar -xzf liquibase-4.6.2.tar.gz \
     && rm liquibase-4.6.2.tar.gz
 
+# add package manager (lpm)
+ADD https://github.com/liquibase/liquibase-package-manager/releases/download/v0.1.0/lpm-0.1.0-linux.zip lpm.zip
+RUN mkdir bin \
+    && unzip -d bin/ \
+    && rm -f lpm.zip \
+
+# fix h2 vuln
+RUN ./bin/lpm update h2 \
+    && ./bin/lpm add h2
+
 COPY --chmod=500 --chown=liquibase:liquibase liquibase /liquibase/
 RUN ln -s /liquibase/liquibase /usr/local/bin/liquibase
 
