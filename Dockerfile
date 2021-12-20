@@ -28,6 +28,6 @@ RUN ln -s /liquibase/liquibase /usr/local/bin/liquibase
 
 # fix h2 vuln
 RUN /liquibase/bin/lpm update h2 \
-    && /liquibase/bin/lpm add h2
-
+    && /liquibase/bin/lpm add h2 \
+    && rm -f lib/h2-1.4.200.jar
 USER liquibase
